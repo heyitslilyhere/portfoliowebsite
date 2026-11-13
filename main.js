@@ -63,8 +63,7 @@
     (S.work || []).forEach(function (w, i) {
       var label = [w.title, w.client].filter(Boolean).join(" — ");
       var btn = el("button", { class: "work-tile", type: "button", "aria-label": "Play " + (label || "project " + (i + 1)) }, [
-        el("img", { src: w.thumb, alt: "", loading: i < 5 ? "eager" : "lazy", decoding: "async" }),
-        el("span", { class: "work-tile__label", text: w.title || "" })
+        el("img", { src: w.thumb, alt: "", loading: i < 5 ? "eager" : "lazy", decoding: "async" })
       ]);
       btn.addEventListener("click", function () { openLightbox(w); });
       grid.appendChild(el("li", {}, [btn]));
@@ -96,8 +95,22 @@
   /* ---- Video pop-up (Work page) ---- */
   var box = $("#lightbox");
   if (!box) return;
-  var lv = box.querySelector(".lightbox__video"),
+  var lv = box.querySelector(".lightbox__video"), frame = box.querySelector(".lightbox__frame"),
       soon = box.querySelector(".lightbox__soon"), cap = box.querySelector(".lightbox__caption");
+
+  // Turns a TikTok or Instagram post link into its official embeddable player.
+  function embedUrl(link) {
+    var m = /tiktok\.com\/@[^/]+\/video\/(\d+)/.exec(link || "");
+    if (m) return "https://www.tiktok.com/player/v1/" + m[1] + "?autoplay=1&rel=0&description=0&music_info=0";
+    m = /instagram\.com\/(?:p|reel)\/([\w-]+)/.exec(link || "");
+    if (m) return "https://www.instagram.com/p/" + m[1] + "/embed/";
+    return "";
+  }
+  function clearEmbed() {
+    var f = frame.querySelector(".lightbox__embed");
+    if (f) f.remove();
+    box.classList.remove("is-tall");
+  }
 
   function showSoon(w) {
     lv.hidden = true; soon.hidden = false;
@@ -108,8 +121,15 @@
     if (w.title) cap.appendChild(document.createTextNode(w.title));
     var meta = [w.client, w.role].filter(Boolean).join(" · ");
     if (meta) cap.appendChild(el("span", { text: (w.title ? "  —  " : "") + meta }));
+    clearEmbed();
     soon.hidden = true; lv.hidden = false;
-    if (w.video) {
+    var embed = embedUrl(w.social);
+    if (embed) {
+      lv.hidden = true; lv.removeAttribute("src");
+      box.classList.add("is-tall");
+      frame.appendChild(el("iframe", { class: "lightbox__embed", src: embed, title: w.title || "Social video",
+        allow: "autoplay; encrypted-media; fullscreen; picture-in-picture", allowfullscreen: "" }));
+    } else if (w.video) {
       lv.onerror = function () { showSoon(w); };
       lv.poster = w.thumb || "";
       lv.src = w.video;
@@ -118,7 +138,7 @@
     if (box.showModal) box.showModal(); else box.setAttribute("open", "");
   }
   function closeLightbox() {
-    lv.pause(); lv.removeAttribute("src"); lv.load();
+    lv.pause(); lv.removeAttribute("src"); lv.load(); clearEmbed();
     if (box.close) box.close(); else box.removeAttribute("open");
   }
   box.querySelector(".lightbox__close").addEventListener("click", closeLightbox);

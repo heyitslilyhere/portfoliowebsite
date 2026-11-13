@@ -11,29 +11,19 @@ Status as of 13 Nov 2026 (AEDT).
 | Thing | Location |
 |---|---|
 | Local repo (source of truth) | `~/Desktop/portfoliowebsite` on Lily's MacBook |
-| GitHub repo | https://github.com/heyitslilyhere/portfoliowebsite (**still empty, nothing pushed yet**) |
-| Local commit waiting to be pushed | `820fc1b Initial portfolio site for lilymcgann.com` on branch `main`, remote `origin` already set |
+| GitHub repo | https://github.com/heyitslilyhere/portfoliowebsite (branch `main`, pushed over HTTPS; token saved in the macOS keychain) |
 | Cloudflare account | Lily's account, ID `ca43efdfdc93efacb323fabaa55f1fe9` |
-| Current Pages project | `lilymcgann` (**Direct Upload** type, which can't be connected to Git) at https://lilymcgann.pages.dev |
-| Custom domain | `lilymcgann.com` attached to the `lilymcgann` project. Status was "Initializing" (SSL being issued) at handoff. `www` is not set up. |
+| Pages project | `portfoliowebsite` (**Git-connected** to the repo above; preset None, no build command, output `/`) at https://portfoliowebsite-1fw.pages.dev |
+| Custom domains | **Detached on 13 Nov 2026 to hide the site until launch.** To launch: Pages project → Custom domains → add `lilymcgann.com` and `www.lilymcgann.com`. Until then the site is only at the pages.dev URL. |
 | Raw video masters | `~/Desktop/Desktop/Canva/Canva Growth YT Videos/`: 59 Canva ad files, many in several aspect ratios (16x9, 9x16, 1x1, 4x5). Use the **16x9** versions. Most are 20–300 MB. |
 
-**Important:** lilymcgann.pages.dev is currently serving an **older single-page version** (Home, Work, About and Say hi stacked on one long page). The repo has the **new multi-page version**, which hasn't been deployed yet.
+The old Direct Upload project `lilymcgann` was deleted on 13 Nov 2026.
 
 ---
 
-## 2. Immediate next steps
+## 2. Deploying
 
-1. **Push the repo:** `cd ~/Desktop/portfoliowebsite && git push -u origin main`
-   (Run it from a normal terminal. If you're not signed in, `gh auth login` first.)
-2. **Create a Git-connected Pages project:** Cloudflare dashboard → Workers & Pages → Create → Pages → *Import an existing Git repository* → `heyitslilyhere/portfoliowebsite`.
-   - Framework preset: **None**. Build command: **(empty)**. Output directory: **`/`**. Branch: `main`.
-   - The name `lilymcgann` is taken by the old project. Either delete the old project first (after detaching its domain), or use a new name such as `portfoliowebsite`.
-3. **Move the domain:** remove `lilymcgann.com` from the old `lilymcgann` project, then add it to the new project under Custom domains. Also add `www.lilymcgann.com`, or a redirect from www to the bare domain.
-4. **Delete the old Direct Upload project** once the new one is serving lilymcgann.com.
-5. From then on, every push to `main` deploys automatically.
-
-*Alternative to steps 2–4:* keep the existing project and deploy from CI with `wrangler pages deploy . --project-name=lilymcgann`. This needs a `CLOUDFLARE_API_TOKEN` (Pages: Edit) and `CLOUDFLARE_ACCOUNT_ID` set as GitHub Actions secrets.
+Every push to `main` deploys automatically (currently only to the pages.dev URL, since the domains are detached): `git add -A && git commit -m "..." && git push`. Xcode Command Line Tools are installed, so git works; `gh` and Homebrew are not installed.
 
 ---
 
@@ -71,7 +61,7 @@ Lily wants **every image, video and notebook card to be replaceable without touc
   - Home: `home.note.width`, `left`, `bottom`, `rotate`, `navTop` (how far down the card the WORK / ABOUT / SAY HI row sits).
   - About / Say hi: `note.textTop` (where the text starts, as a % of card height) and `note.textSize` (text size in `cqw`, a fraction of the card's width, via container queries). Because of this, the text scales with the card and lands in the same place at every screen width, matching the Canva design.
   - If the text overflows (very narrow screens), the card grows: the image is drawn `object-fit: fill` behind an `aspect-ratio` box.
-- Work tiles: `{ thumb, video, title, client, role }` objects in `SITE.work`. A missing or broken video makes the pop-up show the thumbnail with "Video coming soon".
+- Work tiles: `{ thumb, video | social, title, client, role }` objects in `SITE.work`. `social` is a TikTok/Instagram post URL; the pop-up embeds that platform's player in a tall 9:16 frame. A missing or broken video makes the pop-up show the thumbnail with "Video coming soon".
 
 ---
 
