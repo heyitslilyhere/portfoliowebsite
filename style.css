@@ -105,7 +105,7 @@ h1, h2 { margin: 0; font: inherit; }
 @media (max-width: 720px) {
   .work-grid { grid-template-columns: repeat(2, 1fr); padding-left: 0; padding-right: 0; }
   .about { flex-direction: column; align-items: stretch; }
-  .about__photo { width: min(80%, 340px); }
+  .about__photo { width: 100%; max-width: 460px; } /* same width as the notebook below, so the edges line up */
   .about__note { width: 100%; max-width: 460px; }
   .sayhi__note { width: min(100%, 340px); }
   .home__nav { font-size: clamp(10px, 2.9vw, 13px); }

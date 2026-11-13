@@ -122,7 +122,7 @@
     cap.textContent = "";
     if (w.title) cap.appendChild(document.createTextNode(w.title));
     var meta = [w.client, w.role].filter(Boolean).join(" · ");
-    if (meta) cap.appendChild(el("span", { text: (w.title ? "  —  " : "") + meta }));
+    if (meta) cap.appendChild(el("span", { text: (w.title ? " · " : "") + meta }));
     clearEmbed();
     soon.hidden = true; lv.hidden = false;
     var embed = embedUrl(w.social);
