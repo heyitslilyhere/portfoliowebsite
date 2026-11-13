@@ -31,6 +31,7 @@ window.SITE = {
       bottom: "13vh",                       // distance from the bottom edge
       rotate: "0deg",                       // tilt, e.g. "-2deg"
       navTop: "73%",                        // how far down the card the WORK / ABOUT / SAY HI links sit
+      navRotate: "-2.7deg",                 // tilt of the links, matched to the slope of the handwriting
     },
   },
 
@@ -45,13 +46,13 @@ window.SITE = {
   ------------------------------------------------------------------------ */
   work: [
     { thumb: "media/work/01.jpg", video: "media/work/01.mp4", title: "Project title", client: "Canva", role: "Producer" },
-    { thumb: "media/work/02.jpg", social: "https://www.tiktok.com/@canva/video/7389406778397641991", title: "Project title", client: "Canva", role: "Producer" },
+    { thumb: "media/work/08.jpg", video: "media/work/08.mp4", title: "Project title", client: "Canva", role: "Producer" },
     { thumb: "media/work/03.jpg", video: "media/work/03.mp4", title: "Project title", client: "Canva", role: "Producer" },
     { thumb: "media/work/04.jpg", video: "media/work/04.mp4", title: "Project title", client: "Canva", role: "Producer" },
     { thumb: "media/work/05.jpg", social: "https://www.tiktok.com/@canva/video/7416626448011693330", title: "Project title", client: "Canva", role: "Producer" },
     { thumb: "media/work/06.jpg", social: "https://www.tiktok.com/@canva/video/7490699253078052104", title: "Project title", client: "Canva", role: "Producer" },
     { thumb: "media/work/07.jpg", video: "media/work/07.mp4", title: "Project title", client: "Canva", role: "Producer" },
-    { thumb: "media/work/08.jpg", video: "media/work/08.mp4", title: "Project title", client: "Canva", role: "Producer" },
+    { thumb: "media/work/02.jpg", social: "https://www.tiktok.com/@canva/video/7389406778397641991", title: "Project title", client: "Canva", role: "Producer" },
     { thumb: "media/work/09.jpg", video: "media/work/09.mp4", title: "Project title", client: "Canva", role: "Producer" },
     { thumb: "media/work/10.jpg", social: "https://www.instagram.com/p/DJJlExzvDwo/", title: "Design Dares", client: "Canva", role: "Producer" },
     { thumb: "media/work/11.jpg", social: "https://www.tiktok.com/@canva/video/7543871154147183928", title: "Project title", client: "Canva", role: "Producer" },

@@ -51,7 +51,9 @@
     card.style.transform = "rotate(" + (n.rotate || "0deg") + ")";
     var cimg = card.querySelector("img");
     cimg.src = n.image; cimg.alt = n.alt || "";
-    $(".home__nav").style.top = n.navTop || "73%";
+    var nav = $(".home__nav");
+    nav.style.top = n.navTop || "73%";
+    if (n.navRotate) nav.style.transform = "rotate(" + n.navRotate + ")";
     document.addEventListener("visibilitychange", function () {
       if (document.hidden) video.pause(); else if (!reduceMotion) play(video);
     });

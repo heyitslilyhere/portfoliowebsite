@@ -69,8 +69,9 @@ h1, h2 { margin: 0; font: inherit; }
 .paper__text--center a:hover { color: var(--muted); }
 
 /* ---------- ABOUT ---------- */
-.about { display: flex; align-items: flex-start; gap: clamp(16px, 2.3vw, 31px); padding: clamp(32px, 15vh, 118px) var(--gutter); }
-.about__photo { width: clamp(150px, 16vw, 260px); aspect-ratio: 219 / 272; object-fit: cover; }
+/* Matches the Canva layout: photo ~25vw wide, notebook ~28vw, both centred vertically on the page. */
+.about { display: flex; align-items: center; align-self: center; gap: clamp(16px, 3.5vw, 56px); padding: clamp(24px, 4vh, 40px) var(--gutter); }
+.about__photo { width: clamp(180px, 25vw, 420px); aspect-ratio: 341 / 425; object-fit: cover; }
 .about__note { width: clamp(300px, 28vw, 460px); }
 
 /* ---------- SAY HI ---------- */
@@ -104,7 +105,7 @@ h1, h2 { margin: 0; font: inherit; }
 @media (max-width: 720px) {
   .work-grid { grid-template-columns: repeat(2, 1fr); padding-left: 0; padding-right: 0; }
   .about { flex-direction: column; align-items: stretch; }
-  .about__photo { width: min(62%, 260px); }
+  .about__photo { width: min(80%, 340px); }
   .about__note { width: 100%; max-width: 460px; }
   .sayhi__note { width: min(100%, 340px); }
   .home__nav { font-size: clamp(10px, 2.9vw, 13px); }
