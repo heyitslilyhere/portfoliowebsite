@@ -80,20 +80,31 @@ h1, h2 { margin: 0; font: inherit; }
 .sayhi__note .paper__text { padding-left: 6%; padding-right: 6%; }
 
 /* ---------- LIGHTBOX ---------- */
-.lightbox { width: min(1200px, 92vw); max-height: 92vh; padding: 0; border: 0; background: transparent; color: #fff; overflow: visible; }
+/* Pop-up = [← arrow] [video] [→ arrow]. --nav is the space each arrow column takes. */
+.lightbox { --nav: 64px; width: min(1200px + 2 * var(--nav), 96vw, 80vh * 16 / 9 + 2 * var(--nav)); max-height: 92vh; padding: 0; border: 0; background: transparent; color: #fff; overflow: visible; }
 .lightbox::backdrop { background: rgba(10, 10, 14, .9); }
-.lightbox__frame { position: relative; aspect-ratio: 16 / 9; max-height: 80vh; background: #000; }
+.lightbox__stage { display: grid; grid-template-columns: var(--nav) minmax(0, 1fr) var(--nav); align-items: center; }
+.lightbox__frame { position: relative; aspect-ratio: 16 / 9; background: #000; }
+.lightbox__nav {
+  justify-self: center; display: grid; place-items: center; width: 44px; height: 44px; padding: 0;
+  border: 1px solid rgba(255,255,255,.45); border-radius: 50%; background: transparent; color: #fff;
+  font: 400 18px/1 Arial, Helvetica, sans-serif; cursor: pointer; transition: background .2s ease, border-color .2s ease;
+}
+.lightbox__nav:hover, .lightbox__nav:focus-visible { background: rgba(255,255,255,.14); border-color: #fff; }
+.lightbox__nav--prev { grid-column: 1; }
+.lightbox__nav--next { grid-column: 3; }
+.lightbox__frame { grid-column: 2; grid-row: 1; }
 .lightbox__video { width: 100%; height: 100%; object-fit: contain; }
 .lightbox__embed { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #000; }
 /* Social (TikTok / Instagram) posts are portrait, so the pop-up turns tall and narrow. */
-.lightbox.is-tall { width: calc(min(80vh, 92vw * 16 / 9) * 9 / 16); }
+.lightbox.is-tall { width: calc(min(80vh, (92vw - 2 * var(--nav)) * 16 / 9) * 9 / 16 + 2 * var(--nav)); }
 .lightbox [hidden] { display: none !important; }
 .lightbox.is-tall .lightbox__frame { aspect-ratio: 9 / 16; max-height: none; }
 .lightbox__soon { position: absolute; inset: 0; display: grid; place-items: center; font: var(--label); text-transform: uppercase; background: center / cover no-repeat; }
 .lightbox__soon::before { content: ""; position: absolute; inset: 0; background: rgba(0,0,0,.55); }
 .lightbox__soon > * , .lightbox__soon { isolation: isolate; }
-.lightbox__close { position: absolute; top: -38px; right: 0; padding: 8px 0; border: 0; background: none; color: #fff; font: var(--label); text-transform: uppercase; cursor: pointer; }
-.lightbox__caption { margin: 14px 0 0; font: var(--label); text-transform: uppercase; letter-spacing: .02em; }
+.lightbox__close { position: absolute; top: -38px; right: var(--nav); padding: 8px 0; border: 0; background: none; color: #fff; font: var(--label); text-transform: uppercase; cursor: pointer; }
+.lightbox__caption { margin: 14px var(--nav) 0; font: var(--label); text-transform: uppercase; letter-spacing: .02em; }
 .lightbox__caption span { color: #aaa; }
 .lightbox[open] { animation: fade .25s ease; }
 @keyframes fade { from { opacity: 0; transform: translateY(8px); } }
@@ -109,4 +120,12 @@ h1, h2 { margin: 0; font: inherit; }
   .about__note { width: 100%; max-width: 460px; }
   .sayhi__note { width: min(100%, 340px); }
   .home__nav { font-size: clamp(10px, 2.9vw, 13px); }
+  /* Phones: arrows sit in a row under the video instead of beside it. */
+  .lightbox { --nav: 0px; width: 92vw; }
+  .lightbox.is-tall { width: calc(min(68vh, 92vw * 16 / 9) * 9 / 16); }
+  .lightbox__stage { grid-template-columns: 1fr 1fr; row-gap: 14px; }
+  .lightbox__frame { grid-column: 1 / -1; }
+  .lightbox__nav--prev, .lightbox__nav--next { grid-row: 2; grid-column: auto; }
+  .lightbox__nav--prev { justify-self: start; }
+  .lightbox__nav--next { justify-self: end; }
 }

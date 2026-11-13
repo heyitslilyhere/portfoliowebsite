@@ -67,7 +67,7 @@
       var btn = el("button", { class: "work-tile", type: "button", "aria-label": "Play " + (label || "project " + (i + 1)) }, [
         el("img", { src: w.thumb, alt: "", loading: i < 5 ? "eager" : "lazy", decoding: "async" })
       ]);
-      btn.addEventListener("click", function () { openLightbox(w); });
+      btn.addEventListener("click", function () { openLightbox(i); });
       grid.appendChild(el("li", {}, [btn]));
     });
   }
@@ -118,7 +118,11 @@
     lv.hidden = true; soon.hidden = false;
     soon.style.backgroundImage = w.thumb ? "url('" + w.thumb + "')" : "none";
   }
-  function openLightbox(w) {
+  var work = S.work || [], current = 0;
+  function openLightbox(i) {
+    current = (i + work.length) % work.length;   // wraps: → on the last tile goes to the first
+    var w = work[current];
+    lv.pause();
     cap.textContent = "";
     if (w.title) cap.appendChild(document.createTextNode(w.title));
     var meta = [w.client, w.role].filter(Boolean).join(" · ");
@@ -137,13 +141,23 @@
       lv.src = w.video;
       play(lv);
     } else { lv.removeAttribute("src"); showSoon(w); }
-    if (box.showModal) box.showModal(); else box.setAttribute("open", "");
+    if (!box.open) { if (box.showModal) box.showModal(); else box.setAttribute("open", ""); }
   }
   function closeLightbox() {
     lv.pause(); lv.removeAttribute("src"); lv.load(); clearEmbed();
     if (box.close) box.close(); else box.removeAttribute("open");
   }
   box.querySelector(".lightbox__close").addEventListener("click", closeLightbox);
+  box.querySelector(".lightbox__nav--prev").addEventListener("click", function () { openLightbox(current - 1); });
+  box.querySelector(".lightbox__nav--next").addEventListener("click", function () { openLightbox(current + 1); });
+  // ← / → keys switch videos. Captured early so the video player doesn't use them to skip within the clip.
+  window.addEventListener("keydown", function (e) {
+    if (!box.open || e.altKey || e.ctrlKey || e.metaKey) return;
+    if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+      e.preventDefault(); e.stopPropagation();
+      openLightbox(current + (e.key === "ArrowRight" ? 1 : -1));
+    }
+  }, true);
   box.addEventListener("click", function (e) { if (e.target === box) closeLightbox(); });
   box.addEventListener("cancel", function (e) { e.preventDefault(); closeLightbox(); });
 })();
