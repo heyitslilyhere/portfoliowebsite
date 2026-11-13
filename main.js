@@ -142,6 +142,8 @@
       play(lv);
     } else { lv.removeAttribute("src"); showSoon(w); }
     if (!box.open) { if (box.showModal) box.showModal(); else box.setAttribute("open", ""); }
+    // Focus the pop-up itself, not the Close button (otherwise browsers draw a focus box around "Close").
+    box.focus({ preventScroll: true });
   }
   function closeLightbox() {
     lv.pause(); lv.removeAttribute("src"); lv.load(); clearEmbed();

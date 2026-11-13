@@ -92,6 +92,9 @@ h1, h2 { margin: 0; font: inherit; }
   cursor: pointer; opacity: .75; transition: opacity .2s ease;
 }
 .lightbox__nav:hover, .lightbox__nav:focus-visible { opacity: 1; }
+/* No focus rectangles in the pop-up. Tabbing to Close underlines it instead, so keyboard users still see where they are. */
+.lightbox:focus, .lightbox__nav:focus, .lightbox__close:focus { outline: none; }
+.lightbox__close:focus-visible { text-decoration: underline; text-underline-offset: 3px; }
 .lightbox__nav--prev { grid-column: 1; grid-row: 1; }
 .lightbox__nav--next { grid-column: 3; grid-row: 1; }
 .lightbox__frame { grid-column: 2; grid-row: 1; }
