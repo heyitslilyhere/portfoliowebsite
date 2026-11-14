@@ -1,5 +1,5 @@
 /media/*
-  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+  Cache-Control: public, max-age=3600
 
 /*
   X-Content-Type-Options: nosniff

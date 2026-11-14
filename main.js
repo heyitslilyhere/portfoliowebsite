@@ -3,6 +3,12 @@
   "use strict";
   var S = window.SITE || {};
 
+  // The site's built-in Cloudflare address (portfoliowebsite-1fw.pages.dev) can't be deleted,
+  // so anyone who lands there is sent to the real domain, keeping the same page.
+  if (location.hostname === "portfoliowebsite-1fw.pages.dev") {
+    location.replace("https://lilymcgann.com" + location.pathname + location.search + location.hash);
+    return;
+  }
   var $ = function (sel) { return document.querySelector(sel); };
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 

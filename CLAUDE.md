@@ -2,7 +2,7 @@
 
 Portfolio website for **Lily McGann**, an integrated creative producer based in Sydney. It's a plain static site (HTML, CSS and vanilla JS, with no build step and no framework), hosted on **Cloudflare Pages**. It was rebuilt from a Canva layout.
 
-Status as of 13 Nov 2026 (AEDT).
+Status as of 14 Nov 2026 (AEDT): **live at https://lilymcgann.com** (and www).
 
 ---
 
@@ -14,7 +14,7 @@ Status as of 13 Nov 2026 (AEDT).
 | GitHub repo | https://github.com/heyitslilyhere/portfoliowebsite (branch `main`, pushed over HTTPS; token saved in the macOS keychain) |
 | Cloudflare account | Lily's account, ID `ca43efdfdc93efacb323fabaa55f1fe9` |
 | Pages project | `portfoliowebsite` (**Git-connected** to the repo above; preset None, no build command, output `/`) at https://portfoliowebsite-1fw.pages.dev |
-| Custom domains | **Detached on 13 Nov 2026 to hide the site until launch.** To launch: Pages project → Custom domains → add `lilymcgann.com` and `www.lilymcgann.com`. Until then the site is only at the pages.dev URL. |
+| Custom domains | `lilymcgann.com` and `www.lilymcgann.com` on the `portfoliowebsite` project (re-attached at launch on 14 Nov 2026). The pages.dev address can't be deleted, so `main.js` redirects visitors from it to the same path on lilymcgann.com. |
 | Raw video masters | `~/Desktop/Desktop/Canva/Canva Growth YT Videos/`: 59 Canva ad files, many in several aspect ratios (16x9, 9x16, 1x1, 4x5). Use the **16x9** versions. Most are 20–300 MB. |
 
 The old Direct Upload project `lilymcgann` was deleted on 13 Nov 2026.
@@ -23,7 +23,9 @@ The old Direct Upload project `lilymcgann` was deleted on 13 Nov 2026.
 
 ## 2. Deploying
 
-Every push to `main` deploys automatically (currently only to the pages.dev URL, since the domains are detached): `git add -A && git commit -m "..." && git push`. Xcode Command Line Tools are installed, so git works; `gh` and Homebrew are not installed.
+Every push to `main` deploys automatically to lilymcgann.com: `git add -A && git commit -m "..." && git push`. Xcode Command Line Tools are installed, so git works; `gh` and Homebrew are not installed.
+
+**Caching:** lilymcgann.com is a proxied Cloudflare zone, so its edge cache keeps `/media/*` files for up to an hour (`_headers`). After swapping a media file with the same name, either wait an hour or purge: Cloudflare → lilymcgann.com → Caching → Configuration → Purge Everything. (At launch the zone was still serving day-old low-res images until purged.)
 
 ---
 
