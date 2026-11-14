@@ -106,8 +106,8 @@ window.SITE = {
       textRotate: "-0.3deg", // tilt of the typed text, matched to the paper's edges (negative = up to the right)
     },
     paragraphs: [
-      "I'm an integrated creative producer based in Sydney, with 10+ years across in-house and agency.",
-      "To put it simply, I love making great work with great people. Whether it's producing a complex event keynote, juggling multiple shoots at a time or delivering high-volumes of organic & paid social, I love finding interesting ways to bring briefs to life.",
+      "I’m an integrated creative producer based in Sydney, with 10+ years across in-house and agency.",
+      "I love making great work with great people. Whether it’s a complex event keynote, back-to-back shoots or a steady stream of organic and paid social, I’m happiest finding the smartest and most efficient way to get a brief out the door (making it better on the way).",
     ],
   },
 
