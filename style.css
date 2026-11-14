@@ -13,9 +13,6 @@
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 body { margin: 0; background: var(--bg); color: var(--ink); font: var(--body); }
-/* Work page paper (image set in content.js → workBackground). Holes stay pinned to the top edge. */
-body.has-paper { background-color: #ebeaee; background-repeat: no-repeat; background-position: center top; background-size: cover; }
-@media (max-width: 720px) { body.has-paper { background-size: 100% auto; } }
 img, video { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 a:focus-visible, button:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }

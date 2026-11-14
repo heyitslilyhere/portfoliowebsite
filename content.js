@@ -44,9 +44,6 @@ window.SITE = {
                instagram.com/p/…) — the pop-up plays it in that app's own player
        title / client / role : shown in the pop-up
   ------------------------------------------------------------------------ */
-  // Paper texture behind the Work page. To turn it off, set this to "" (empty).
-  workBackground: "media/work/background.jpg",
-
   work: [
     { thumb: "media/work/01.jpg", video: "media/work/01.mp4", title: "Paid Social", client: "Canva", role: "Producer" },
     { thumb: "media/work/08.jpg", video: "media/work/08.mp4", title: "Canva Create 2026 Keynote", client: "Canva", role: "Motion Producer" },
