@@ -37,14 +37,23 @@ h1, h2 { margin: 0; font: inherit; }
 .home__nav--hotspots { inset: 0; display: block; }
 .home__nav--hotspots a { position: absolute; display: block; padding: 0; border-radius: 4px; }
 .home__nav--hotspots a::after { content: none; }
-.home__nav--hotspots a::before {
-  content: ""; position: absolute; left: -2%; right: -2%; top: 30%; bottom: 22%;
-  background: #ff97e1; mix-blend-mode: multiply; opacity: .55; border-radius: 3px;
+.home__nav--hotspots a:hover, .home__nav--hotspots a:focus-visible { font-weight: inherit; }
+.home__nav--hotspots a:focus { outline: none; }
+
+/* ---------- PINK HIGHLIGHTER ----------
+   On hover, tap or keyboard focus, a highlighter swipes left→right across handwritten links
+   (home notebook words, header name, footer words + arrows). Multiply blend keeps the ink visible.
+   Change the colour here. */
+:root { --hl: #ff97e1; }
+.page__head a, .page__foot a { position: relative; }
+.home__nav--hotspots a::before, .page__head a::before, .page__foot a::before {
+  content: ""; position: absolute; left: -2%; right: -2%; top: 30%; bottom: 22%; pointer-events: none;
+  background: var(--hl); mix-blend-mode: multiply; opacity: .55; border-radius: 3px;
   transform: rotate(-2.5deg) scaleX(0); transform-origin: left center; transition: transform .28s ease;
 }
-.home__nav--hotspots a:hover, .home__nav--hotspots a:focus-visible { font-weight: inherit; }
-.home__nav--hotspots a:hover::before, .home__nav--hotspots a:focus-visible::before { transform: rotate(-2.5deg) scaleX(1); }
-.home__nav--hotspots a:focus { outline: none; }
+.page__head a::before, .page__foot a::before { left: -6px; right: -6px; top: 22%; bottom: 14%; }
+:is(.home__nav--hotspots, .page__head, .page__foot) a:is(:hover, :focus-visible, :active)::before { transform: rotate(-2.5deg) scaleX(1); }
+.page__head a:focus, .page__foot a:focus { outline: none; }
 /* Handwritten nav: sized as a share of the card's width (cqw) so it scales with the notebook.
    --hw-cq is that share per PNG pixel. Hover fades instead of going bold. */
 .home__note { container-type: inline-size; }
@@ -73,7 +82,7 @@ h1, h2 { margin: 0; font: inherit; }
 .hw { display: block; width: calc(var(--nw, 0) * 1px * var(--hw-scale) * var(--hw-k, 1)); height: auto; max-width: none; user-select: none; -webkit-user-drag: none; }
 .has-hw, .hw-arrow { display: inline-block; vertical-align: middle; line-height: 0; }
 .page__head a, .page__foot a { display: inline-flex; align-items: center; gap: 10px; }
-.page__head a:hover, .page__foot a:hover { text-decoration: none; opacity: .6; }
+.page__head a:hover, .page__foot a:hover { text-decoration: none; }
 .hw-arrow--left .hw { transform: scaleX(-1); }
 /* ↑ = the → drawing rotated; the box swaps width/height so it takes up the right space. */
 .hw-arrow--up { --hw-k: .6; position: relative; width: calc(var(--ah, 0) * 1px * var(--hw-scale) * var(--hw-k)); height: calc(var(--aw, 0) * 1px * var(--hw-scale) * var(--hw-k)); }
@@ -127,7 +136,15 @@ h1, h2 { margin: 0; font: inherit; }
 }
 .lightbox__nav:hover, .lightbox__nav:focus-visible { opacity: 1; }
 /* Drawn arrows in the pop-up: turned white for the dark backdrop, fixed size. */
-.lightbox__nav .hw { width: 42px !important; filter: brightness(0) invert(1); }
+.lightbox__nav .hw { width: 42px !important; filter: brightness(0) invert(1); position: relative; z-index: 1; }
+/* Pop-up arrows get the highlighter too. The backdrop is dark, so it sits behind the white arrow instead of multiplying. */
+.lightbox__nav { position: relative; }
+.lightbox__nav::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 34%; bottom: 30%; pointer-events: none;
+  background: var(--hl); opacity: .7; border-radius: 3px;
+  transform: rotate(-2.5deg) scaleX(0); transform-origin: left center; transition: transform .28s ease;
+}
+.lightbox__nav:is(:hover, :focus-visible, :active)::before { transform: rotate(-2.5deg) scaleX(1); }
 /* No focus rectangles in the pop-up. Tabbing to Close underlines it instead, so keyboard users still see where they are. */
 .lightbox:focus, .lightbox__nav:focus, .lightbox__close:focus { outline: none; }
 .lightbox__close:focus-visible { text-decoration: underline; text-underline-offset: 3px; }
