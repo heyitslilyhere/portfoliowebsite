@@ -32,6 +32,19 @@ h1, h2 { margin: 0; font: inherit; }
 .home__nav a { padding: 6px 2px; display: inline-flex; flex-direction: column; align-items: center; }
 .home__nav a::after { content: attr(data-text); font-weight: 700; height: 0; overflow: hidden; visibility: hidden; }
 .home__nav a:hover, .home__nav a:focus-visible { font-weight: 700; }
+/* Hotspot nav: the words are drawn in the card picture; each link is an invisible box over its word.
+   Hover/focus swipes a pink highlighter across the word (multiply blend, so the ink shows through). */
+.home__nav--hotspots { inset: 0; display: block; }
+.home__nav--hotspots a { position: absolute; display: block; padding: 0; border-radius: 4px; }
+.home__nav--hotspots a::after { content: none; }
+.home__nav--hotspots a::before {
+  content: ""; position: absolute; left: -2%; right: -2%; top: 30%; bottom: 22%;
+  background: #ff97e1; mix-blend-mode: multiply; opacity: .55; border-radius: 3px;
+  transform: rotate(-2.5deg) scaleX(0); transform-origin: left center; transition: transform .28s ease;
+}
+.home__nav--hotspots a:hover, .home__nav--hotspots a:focus-visible { font-weight: inherit; }
+.home__nav--hotspots a:hover::before, .home__nav--hotspots a:focus-visible::before { transform: rotate(-2.5deg) scaleX(1); }
+.home__nav--hotspots a:focus { outline: none; }
 /* Handwritten nav: sized as a share of the card's width (cqw) so it scales with the notebook.
    --hw-cq is that share per PNG pixel. Hover fades instead of going bold. */
 .home__note { container-type: inline-size; }

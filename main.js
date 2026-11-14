@@ -86,8 +86,20 @@
     var cimg = card.querySelector("img");
     cimg.src = n.image; cimg.alt = n.alt || "";
     var nav = $(".home__nav");
-    nav.style.top = n.navTop || "73%";
-    if (n.navRotate) nav.style.transform = "rotate(" + n.navRotate + ")";
+    if (n.hotspots) {
+      // The words are part of the picture: turn each link into an invisible button over its word.
+      nav.classList.add("home__nav--hotspots");
+      nav.querySelectorAll("a[data-page]").forEach(function (a) {
+        var box = n.hotspots[a.dataset.page];
+        if (!box) { a.hidden = true; return; }
+        a.setAttribute("aria-label", a.dataset.text || a.textContent.trim());
+        a.textContent = "";
+        a.style.left = box.left; a.style.top = box.top; a.style.width = box.width; a.style.height = box.height;
+      });
+    } else {
+      nav.style.top = n.navTop || "73%";
+      if (n.navRotate) nav.style.transform = "rotate(" + n.navRotate + ")";
+    }
     document.addEventListener("visibilitychange", function () {
       if (document.hidden) video.pause(); else if (!reduceMotion) play(video);
     });

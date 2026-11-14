@@ -45,8 +45,17 @@ window.SITE = {
       left:   "6.4vw",                      // distance from the left edge
       bottom: "13vh",                       // distance from the bottom edge
       rotate: "0deg",                       // tilt, e.g. "-2deg"
-      navTop: "73%",                        // how far down the card the WORK / ABOUT / SAY HI links sit
-      navRotate: "-2.7deg",                 // tilt of the links, matched to the slope of the handwriting
+      // WORK / ABOUT / SAY HI are handwritten INTO the card picture, so each link is an invisible
+      // button placed over its word (left/top/width/height as % of the card).
+      // If you re-export the card and the words move, nudge these numbers.
+      // Set hotspots to null to go back to typed links (then navTop/navRotate apply).
+      hotspots: {
+        work:     { left: "5%",  top: "78%", width: "24%", height: "18%" },
+        about:    { left: "35%", top: "78%", width: "23.5%", height: "18%" },
+        "say-hi": { left: "63%", top: "76%", width: "29%", height: "18%" },
+      },
+      navTop: "73%",
+      navRotate: "-2.7deg",
     },
   },
 
