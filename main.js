@@ -2,6 +2,7 @@
 (function () {
   "use strict";
   var S = window.SITE || {};
+
   var $ = function (sel) { return document.querySelector(sel); };
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -30,6 +31,7 @@
     var img = card.querySelector(".paper__img");
     img.src = note.image;
     card.style.setProperty("--top", note.textTop || "35%");
+    if (note.textRotate) card.style.setProperty("--rot", note.textRotate);
     if (note.textSize) card.style.setProperty("--fs", note.textSize);
     function fit() { if (img.naturalWidth) card.style.setProperty("--ar", img.naturalWidth / img.naturalHeight); }
     img.complete ? fit() : img.addEventListener("load", fit);

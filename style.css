@@ -104,7 +104,7 @@ h1, h2 { margin: 0; font: inherit; }
 .paper { position: relative; aspect-ratio: var(--ar, 1.4); container-type: inline-size; }
 .paper__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: fill; filter: drop-shadow(0 2px 4px rgba(0,0,0,.06)); }
 /* Text size is a fraction of the card width (cqw), so it always lands where it did in Canva. */
-.paper__text { position: relative; padding: calc(var(--top, 35%) / var(--ar, 1.4)) 8.4% 6% 7.8%; font-size: var(--fs, 3.45cqw); line-height: 1.45; }
+.paper__text { position: relative; padding: calc(var(--top, 35%) / var(--ar, 1.4)) 8.4% 6% 7.8%; font-size: var(--fs, 3.45cqw); line-height: 1.45; transform: rotate(var(--rot, 0deg)); transform-origin: left top; }
 .paper__text p { margin: 0 0 1.45em; }
 .paper__text p:last-child { margin-bottom: 0; }
 .paper__text--center { text-align: center; }
