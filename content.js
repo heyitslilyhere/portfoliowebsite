@@ -103,7 +103,7 @@ window.SITE = {
       image: "media/notes/note-about.png",
       textTop: "36%",       // where the typed paragraphs start (% down the card)
       textSize: "3.45cqw",  // text size relative to card width (bigger number = bigger text)
-      textRotate: "-0.3deg", // tilt of the typed text, matched to the paper's edges (negative = up to the right)
+      textRotate: "-1deg",   // tilt of the typed text (negative = up to the right). The paper itself is ~0.3°; 1° makes the slope visible
     },
     paragraphs: [
       "I’m an integrated creative producer based in Sydney, with 10+ years across in-house and agency.",
