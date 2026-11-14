@@ -62,6 +62,10 @@
   /* ---- Work ---- */
   var grid = $("#work-grid");
   if (grid) {
+    if (S.workBackground) {
+      document.body.classList.add("has-paper");
+      document.body.style.backgroundImage = "url('" + S.workBackground + "')";
+    }
     (S.work || []).forEach(function (w, i) {
       var label = [w.title, w.client].filter(Boolean).join(" — ");
       var btn = el("button", { class: "work-tile", type: "button", "aria-label": "Play " + (label || "project " + (i + 1)) }, [
