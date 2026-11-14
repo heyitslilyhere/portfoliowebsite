@@ -39,7 +39,7 @@ content.js      ← ALL copy, links and media paths (window.SITE). Edit this, no
 main.js         Fills each page from content.js. Each section is null-guarded, so one script serves every page.
 style.css       All styles; colour/spacing tokens are in :root
 _headers        Cloudflare headers (cache for /media/*, nosniff, referrer policy)
-favicon.svg, robots.txt, README.md (Lily-facing guide: swapping media + deploying)
+favicon-32.png / favicon-192.png / apple-touch-icon.png (Lily's drawn LILY oval), robots.txt, README.md (Lily-facing guide: swapping media + deploying)
 media/
   home/   home-video.mp4 (1920x1080, 22.8 s, 13 MB, no audio), home-poster.jpg
   notes/  note-home.png, note-about.png, note-sayhi.png (transparent notebook cutouts)
