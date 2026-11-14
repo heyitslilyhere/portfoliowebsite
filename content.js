@@ -12,6 +12,10 @@
 
 window.SITE = {
 
+  // Bump this number after replacing any image or video (same file name) so every
+  // browser and phone downloads the new version instead of an old saved copy.
+  mediaVersion: "3",
+
   name: "Lily McGann",
   description: "Lily McGann is an integrated creative producer based in Sydney, with 10+ years across in-house and agency.",
 
@@ -33,13 +37,16 @@ window.SITE = {
   /* ---------------------------------------------------------------- HOME */
   home: {
     video:  "media/home/home-video.mp4",   // full-screen background video (MP4, 16:9, muted, loops)
+    // Optional vertical (9:16, 1080x1920) version for phones. The 16:9 video has to be blown up
+    // ~2.3x to fill a tall phone screen, which looks soft. Drop the file in and put its path here.
+    videoMobile: "",
     poster: "media/home/home-poster.jpg",  // still frame shown while the video loads
 
     // The notebook card on top of the video.
     // Swap the picture by replacing media/notes/note-home.png
     // (export from Canva as a PNG with a transparent background, ideally 3x size).
     note: {
-      image: "media/notes/note-home.png?v=2",   // bump ?v= after replacing the file so browsers fetch the new one
+      image: "media/notes/note-home.png",
       alt:   "Lily McGann — Integrated Creative Producer",
       width:  "clamp(230px, 22vw, 400px)", // how big the card is on screen
       left:   "6.4vw",                      // distance from the left edge

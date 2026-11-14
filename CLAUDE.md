@@ -25,7 +25,7 @@ The old Direct Upload project `lilymcgann` was deleted on 13 Nov 2026.
 
 Every push to `main` deploys automatically to lilymcgann.com: `git add -A && git commit -m "..." && git push`. Xcode Command Line Tools are installed, so git works; `gh` and Homebrew are not installed.
 
-**Caching:** lilymcgann.com is a proxied Cloudflare zone, so its edge cache keeps `/media/*` files for up to an hour (`_headers`). After swapping a media file with the same name, either wait an hour or purge: Cloudflare → lilymcgann.com → Caching → Configuration → Purge Everything. (At launch the zone was still serving day-old low-res images until purged.)
+**Caching:** every `media/...` path gets `?v=<SITE.mediaVersion>` added by `main.js` (and the favicon links in the HTML carry `?v=3`). After replacing any media file with the same name, **bump `mediaVersion` in content.js** so phones and browsers fetch the new file instead of a saved copy. Separately, lilymcgann.com is a proxied Cloudflare zone, so its edge cache keeps `/media/*` files for up to an hour (`_headers`). After swapping a media file with the same name, either wait an hour or purge: Cloudflare → lilymcgann.com → Caching → Configuration → Purge Everything. (At launch the zone was still serving day-old low-res images until purged.)
 
 ---
 
@@ -110,7 +110,7 @@ If the total media gets large (over about 500 MB), move videos to Cloudflare R2 
 ## 7. Ideas not yet done (only if Lily asks)
 
 - Muted hover previews on work tiles.
-- Separate mobile (portrait) home video via `<source media>`.
+- Separate mobile (portrait) home video: supported via `home.videoMobile` in content.js (empty until Lily supplies a 9:16 1080x1920 export). The 16:9 video is upscaled ~2.3x on phones, which is why it looks soft there.
 - A `www` → apex redirect (Cloudflare Redirect Rule or a second custom domain).
 - A downloadable CV, or an Instagram link on Say hi.
 - Web Analytics (free in Cloudflare; one toggle on the Pages project).

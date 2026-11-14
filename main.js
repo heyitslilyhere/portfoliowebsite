@@ -3,6 +3,16 @@
   "use strict";
   var S = window.SITE || {};
 
+  // Add ?v=<mediaVersion> to every media/... path so updated files are never served from an old cache.
+  (function stamp(o) {
+    if (!S.mediaVersion || !o || typeof o !== "object") return;
+    Object.keys(o).forEach(function (k) {
+      var v = o[k];
+      if (typeof v === "string" && v.indexOf("media/") === 0 && v.indexOf("?") < 0) o[k] = v + "?v=" + S.mediaVersion;
+      else if (v && typeof v === "object") stamp(v);
+    });
+  })(S);
+
   // The site's built-in Cloudflare address (portfoliowebsite-1fw.pages.dev) can't be deleted,
   // so anyone who lands there is sent to the real domain, keeping the same page.
   if (location.hostname === "portfoliowebsite-1fw.pages.dev") {
@@ -84,7 +94,10 @@
   if (video) {
     var h = S.home || {};
     if (h.poster) video.poster = h.poster;
-    if (h.video && !reduceMotion) { video.src = h.video; play(video); }
+    // Portrait screens (phones) get the vertical video if there is one.
+    var portrait = window.matchMedia("(max-aspect-ratio: 1/1)").matches;
+    var homeVideo = (portrait && h.videoMobile) || h.video;
+    if (homeVideo && !reduceMotion) { video.src = homeVideo; play(video); }
     var n = h.note || {};
     var card = $(".home__note");
     card.style.width = n.width || "clamp(230px, 22vw, 400px)";
