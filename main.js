@@ -44,7 +44,7 @@
     var img = el("img", { class: "hw", src: src, alt: alt, decoding: "async" });
     function size() {
       if (!img.naturalWidth) return;
-      img.style.width = "calc(" + img.naturalWidth + "px * var(--hw-scale) * var(--hw-k, 1))";
+      img.style.setProperty("--nw", img.naturalWidth);   // style.css turns this into a width
       if (onSize) onSize(img);
     }
     img.complete ? size() : img.addEventListener("load", size);

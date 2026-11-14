@@ -70,7 +70,7 @@ Lily wants **every image, video and notebook card to be replaceable without touc
 ## 5. Design spec (from the Canva layout, 1366×768 frames)
 
 - Page background `#f8f7fd` (soft lavender-white). Ink `#1d1d1f`.
-- Labels: 13px uppercase Helvetica Neue/Arial. Header has the page name on the left and "LILY MCGANN" on the right (links home). Footer has ← previous on the left and next → on the right.
+- Labels: 13px uppercase Helvetica Neue/Arial. Header has "LILY MCGANN" on the left (links home) and the page name on the right, both handwritten. Footer has ← previous on the left and next → on the right.
 - Footer links: Work (← Home, Say hi →); About (← Work, Say hi →); Say hi (← About, Home ↑).
 - Home: video `object-fit: cover`, full `100svh`. The notebook card sits bottom-left (about 22vw wide, 6.4vw from the left, 13vh from the bottom). Nav is bold Arial, about 0.82vw.
 - Work grid: 5 columns, tiles **2:1**, gap about 21px, running edge to edge (no side gutter). 3 columns under 1100px, 2 columns under 720px (labels always visible on phones).

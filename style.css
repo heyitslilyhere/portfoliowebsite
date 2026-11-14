@@ -32,6 +32,14 @@ h1, h2 { margin: 0; font: inherit; }
 .home__nav a { padding: 6px 2px; display: inline-flex; flex-direction: column; align-items: center; }
 .home__nav a::after { content: attr(data-text); font-weight: 700; height: 0; overflow: hidden; visibility: hidden; }
 .home__nav a:hover, .home__nav a:focus-visible { font-weight: 700; }
+/* Handwritten nav: sized as a share of the card's width (cqw) so it scales with the notebook.
+   --hw-cq is that share per PNG pixel. Hover fades instead of going bold. */
+.home__note { container-type: inline-size; }
+.home__nav:has(.hw) { gap: 9%; }
+.home__nav .hw { --hw-cq: .026; width: calc(var(--nw, 0) * var(--hw-cq) * 1cqw); }
+.home__nav a.has-hw::after { content: none; }
+.home__nav a.has-hw { transition: opacity .2s ease; }
+.home__nav a.has-hw:hover, .home__nav a.has-hw:focus-visible { opacity: .55; }
 
 /* ---------- SHARED PAGE FRAME ---------- */
 .page {
@@ -49,7 +57,7 @@ h1, h2 { margin: 0; font: inherit; }
    Every PNG has the same pen thickness (24px), so one scale sizes them all consistently. */
 :root { --hw-scale: .1; }
 [data-hw="name"] { --hw-k: .8; }   /* the name was written bigger on the page, so shrink it a touch to balance */
-.hw { display: block; height: auto; max-width: none; user-select: none; -webkit-user-drag: none; }
+.hw { display: block; width: calc(var(--nw, 0) * 1px * var(--hw-scale) * var(--hw-k, 1)); height: auto; max-width: none; user-select: none; -webkit-user-drag: none; }
 .has-hw, .hw-arrow { display: inline-block; vertical-align: middle; line-height: 0; }
 .page__head a, .page__foot a { display: inline-flex; align-items: center; gap: 10px; }
 .page__head a:hover, .page__foot a:hover { text-decoration: none; opacity: .6; }
