@@ -19,20 +19,20 @@
 </head>
 <body>
   <main class="page">
-    <header class="page__head"><h1>Work</h1><a href="/" data-page="index" class="js-name">Lily McGann</a></header>
+    <header class="page__head"><h1 data-hw="work">Work</h1><a href="/" data-page="index" class="js-name" data-hw="name">Lily McGann</a></header>
     <ul class="work-grid" id="work-grid"></ul>
-    <footer class="page__foot"><a href="/" data-page="index"><span aria-hidden="true">←</span> Home</a><a href="/say-hi" data-page="say-hi">Say hi <span aria-hidden="true">→</span></a></footer>
+    <footer class="page__foot"><a href="/" data-page="index"><span data-hw-arrow="left" aria-hidden="true">←</span> <span data-hw="home">Home</span></a><a href="/say-hi" data-page="say-hi"><span data-hw="say-hi">Say hi</span> <span data-hw-arrow="right" aria-hidden="true">→</span></a></footer>
   </main>
 
   <dialog class="lightbox" id="lightbox" aria-label="Project video" tabindex="-1">
     <button class="lightbox__close" type="button" aria-label="Close">Close ✕</button>
     <div class="lightbox__stage">
-      <button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="Previous video"><span aria-hidden="true">←</span></button>
+      <button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="Previous video"><span data-hw-arrow="left" aria-hidden="true">←</span></button>
       <div class="lightbox__frame">
         <video class="lightbox__video" controls playsinline></video>
         <div class="lightbox__soon" hidden>Video coming soon</div>
       </div>
-      <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Next video"><span aria-hidden="true">→</span></button>
+      <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Next video"><span data-hw-arrow="right" aria-hidden="true">→</span></button>
       <p class="lightbox__caption"></p>
     </div>
   </dialog>

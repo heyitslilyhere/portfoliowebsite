@@ -37,6 +37,40 @@
 
   document.querySelectorAll(".js-name").forEach(function (a) { a.textContent = S.name || "Lily McGann"; });
 
+  /* ---- Handwriting: swap typed labels and arrows for Lily's drawn PNGs ---- */
+  var HW = S.handwriting || {};
+  // Each PNG is drawn at the same pen thickness, so size = its own pixels × one shared scale.
+  function hwImage(src, alt, onSize) {
+    var img = el("img", { class: "hw", src: src, alt: alt, decoding: "async" });
+    function size() {
+      if (!img.naturalWidth) return;
+      img.style.width = "calc(" + img.naturalWidth + "px * var(--hw-scale) * var(--hw-k, 1))";
+      if (onSize) onSize(img);
+    }
+    img.complete ? size() : img.addEventListener("load", size);
+    img.addEventListener("error", function () { img.replaceWith(document.createTextNode(alt)); });
+    return img;
+  }
+  document.querySelectorAll("[data-hw]").forEach(function (n) {
+    var src = HW[n.dataset.hw];
+    if (!src) return;
+    var word = n.textContent.trim();
+    n.textContent = "";
+    n.appendChild(hwImage(src, word));
+    n.classList.add("has-hw");
+  });
+  document.querySelectorAll("[data-hw-arrow]").forEach(function (n) {
+    if (!HW.arrow) return;
+    var glyph = n.textContent;
+    n.textContent = "";
+    n.classList.add("hw-arrow", "hw-arrow--" + n.dataset.hwArrow);
+    n.appendChild(hwImage(HW.arrow, "", function (img) {
+      // ↑ is the → drawing turned 90°, so give its box the swapped width and height.
+      if (n.dataset.hwArrow === "up") { n.style.setProperty("--aw", img.naturalWidth); n.style.setProperty("--ah", img.naturalHeight); }
+    }));
+    n.dataset.glyph = glyph;
+  });
+
   /* ---- Home ---- */
   var video = $(".home__video");
   if (video) {

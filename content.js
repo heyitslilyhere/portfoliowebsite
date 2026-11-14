@@ -15,6 +15,21 @@ window.SITE = {
   name: "Lily McGann",
   description: "Lily McGann is an integrated creative producer based in Sydney, with 10+ years across in-house and agency.",
 
+  /* --------------------------------------------------------- HANDWRITING
+     Lily's handwritten labels, used in the page headers, footers and the work
+     pop-up arrows. Replace a PNG (same file name) to redraw a word; set a path
+     to "" to fall back to typed text. All PNGs share one pen thickness, so
+     they line up when shown at the same scale (--hw-scale in style.css).
+  ------------------------------------------------------------------------ */
+  handwriting: {
+    work:     "media/handwriting/work.png",
+    about:    "media/handwriting/about.png",
+    "say-hi": "media/handwriting/say-hi.png",
+    home:     "media/handwriting/home.png",
+    name:     "media/handwriting/name.png",    // LILY McGANN, top right
+    arrow:    "media/handwriting/arrow.png",   // drawn pointing right; flipped/rotated for ← and ↑
+  },
+
   /* ---------------------------------------------------------------- HOME */
   home: {
     video:  "media/home/home-video.mp4",   // full-screen background video (MP4, 16:9, muted, loops)

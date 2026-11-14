@@ -44,7 +44,8 @@ media/
   home/   home-video.mp4 (1920x1080, 22.8 s, 13 MB, no audio), home-poster.jpg
   notes/  note-home.png, note-about.png, note-sayhi.png (transparent notebook cutouts)
   about/  about-photo.jpg
-  work/   01.jpg … 15.jpg (thumbnails); 01.mp4 … 15.mp4 go here (none exist yet)
+  work/   01.jpg … 15.jpg (thumbnails), 01–14 .mp4 work videos (TikTok/IG tiles use `social` links instead)
+  handwriting/  work, about, say-hi, home, name (LILY McGANN), arrow — Lily's handwriting as transparent PNGs
 ```
 
 **URLs:** pages are linked as clean paths (`/work`, `/about`, `/say-hi`, `/`), which is how Cloudflare Pages serves `work.html` and the others. Each link also has `data-page="work"` etc. When the site runs from `file://` or `localhost`, `main.js` rewrites those links to `work.html`, so local previews work too. All asset paths are relative, and every page sits at the root, so they resolve the same way everywhere.
@@ -61,6 +62,7 @@ Lily wants **every image, video and notebook card to be replaceable without touc
   - Home: `home.note.width`, `left`, `bottom`, `rotate`, `navTop` (how far down the card the WORK / ABOUT / SAY HI row sits).
   - About / Say hi: `note.textTop` (where the text starts, as a % of card height) and `note.textSize` (text size in `cqw`, a fraction of the card's width, via container queries). Because of this, the text scales with the card and lands in the same place at every screen width, matching the Canva design.
   - If the text overflows (very narrow screens), the card grows: the image is drawn `object-fit: fill` behind an `aspect-ratio` box.
+- Handwriting: header page names, LILY McGANN, footer words and all arrows are PNGs from `SITE.handwriting`. Elements are marked `data-hw="key"` / `data-hw-arrow="left|right|up"`; `main.js` swaps the typed text for the image (typed text stays as alt text and as the fallback). Every PNG is normalised to a 24px pen stroke, so they're sized by one shared `--hw-scale` in style.css (`--hw-k` per element to nudge). The arrow is drawn pointing right; ← flips it, ↑ rotates it. The pop-up arrows are the same PNG turned white with a CSS filter.
 - Work tiles: `{ thumb, video | social, title, client, role }` objects in `SITE.work`. `social` is a TikTok/Instagram post URL; the pop-up embeds that platform's player in a tall 9:16 frame. A missing or broken video makes the pop-up show the thumbnail with "Video coming soon".
 
 ---

@@ -45,6 +45,19 @@ h1, h2 { margin: 0; font: inherit; }
 }
 .page__foot a:hover, .page__head a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
+/* ---------- HANDWRITING (header/footer labels + arrows, see content.js → handwriting) ----------
+   Every PNG has the same pen thickness (24px), so one scale sizes them all consistently. */
+:root { --hw-scale: .1; }
+[data-hw="name"] { --hw-k: .8; }   /* the name was written bigger on the page, so shrink it a touch to balance */
+.hw { display: block; height: auto; max-width: none; user-select: none; -webkit-user-drag: none; }
+.has-hw, .hw-arrow { display: inline-block; vertical-align: middle; line-height: 0; }
+.page__head a, .page__foot a { display: inline-flex; align-items: center; gap: 10px; }
+.page__head a:hover, .page__foot a:hover { text-decoration: none; opacity: .6; }
+.hw-arrow--left .hw { transform: scaleX(-1); }
+/* ↑ = the → drawing rotated; the box swaps width/height so it takes up the right space. */
+.hw-arrow--up { --hw-k: .6; position: relative; width: calc(var(--ah, 0) * 1px * var(--hw-scale) * var(--hw-k)); height: calc(var(--aw, 0) * 1px * var(--hw-scale) * var(--hw-k)); }
+.hw-arrow--up .hw { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-90deg); }
+
 /* ---------- WORK GRID ---------- */
 .work-grid {
   list-style: none; margin: 0; padding: clamp(32px, 11vh, 90px) 0 clamp(32px, 11vh, 90px);
@@ -92,6 +105,8 @@ h1, h2 { margin: 0; font: inherit; }
   cursor: pointer; opacity: .75; transition: opacity .2s ease;
 }
 .lightbox__nav:hover, .lightbox__nav:focus-visible { opacity: 1; }
+/* Drawn arrows in the pop-up: turned white for the dark backdrop, fixed size. */
+.lightbox__nav .hw { width: 42px !important; filter: brightness(0) invert(1); }
 /* No focus rectangles in the pop-up. Tabbing to Close underlines it instead, so keyboard users still see where they are. */
 .lightbox:focus, .lightbox__nav:focus, .lightbox__close:focus { outline: none; }
 .lightbox__close:focus-visible { text-decoration: underline; text-underline-offset: 3px; }
@@ -132,6 +147,8 @@ h1, h2 { margin: 0; font: inherit; }
   .lightbox__frame { grid-column: 1 / -1; }
   .lightbox__nav, .lightbox__caption { grid-row: 2; margin-top: 8px; }
   .lightbox__nav { width: auto; height: auto; padding: 6px 2px; font-size: 18px; opacity: 1; }
+  .lightbox__nav .hw { width: 32px !important; }
+  :root { --hw-scale: .08; }
   .lightbox__nav--prev { grid-column: 1; }
   .lightbox__caption { grid-column: 2; margin: 8px 0 0; text-align: center; align-self: center; }
   .lightbox__nav--next { grid-column: 3; }
