@@ -39,7 +39,7 @@ window.SITE = {
     // Swap the picture by replacing media/notes/note-home.png
     // (export from Canva as a PNG with a transparent background, ideally 3x size).
     note: {
-      image: "media/notes/note-home.png",
+      image: "media/notes/note-home.png?v=2",   // bump ?v= after replacing the file so browsers fetch the new one
       alt:   "Lily McGann — Integrated Creative Producer",
       width:  "clamp(230px, 22vw, 400px)", // how big the card is on screen
       left:   "6.4vw",                      // distance from the left edge
