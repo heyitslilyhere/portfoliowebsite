@@ -14,7 +14,7 @@ window.SITE = {
 
   // Bump this number after replacing any image or video (same file name) so every
   // browser and phone downloads the new version instead of an old saved copy.
-  mediaVersion: "3",
+  mediaVersion: "4",
 
   name: "Lily McGann",
   description: "Lily McGann is an integrated creative producer based in Sydney, with 10+ years across in-house and agency.",

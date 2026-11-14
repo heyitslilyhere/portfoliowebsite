@@ -25,7 +25,7 @@ The old Direct Upload project `lilymcgann` was deleted on 13 Nov 2026.
 
 Every push to `main` deploys automatically to lilymcgann.com: `git add -A && git commit -m "..." && git push`. Xcode Command Line Tools are installed, so git works; `gh` and Homebrew are not installed.
 
-**Caching:** every `media/...` path gets `?v=<SITE.mediaVersion>` added by `main.js` (and the favicon links in the HTML carry `?v=3`). After replacing any media file with the same name, **bump `mediaVersion` in content.js** so phones and browsers fetch the new file instead of a saved copy. Separately, lilymcgann.com is a proxied Cloudflare zone, so its edge cache keeps `/media/*` files for up to an hour (`_headers`). After swapping a media file with the same name, either wait an hour or purge: Cloudflare → lilymcgann.com → Caching → Configuration → Purge Everything. (At launch the zone was still serving day-old low-res images until purged.)
+**Caching:** every `media/...` path gets `?v=<SITE.mediaVersion>` added by `main.js` (and the favicon links in the HTML carry `?v=3`). After replacing any media file with the same name, **bump `mediaVersion` in content.js** so phones and browsers fetch the new file instead of a saved copy. Cloudflare tells browsers to keep .js/.css for 4 hours, so the HTML loads `style.css?v=N`, `content.js?v=N`, `main.js?v=N` — bump those in all five HTML files after changing code. Separately, lilymcgann.com is a proxied Cloudflare zone, so its edge cache keeps `/media/*` files for up to an hour (`_headers`). After swapping a media file with the same name, either wait an hour or purge: Cloudflare → lilymcgann.com → Caching → Configuration → Purge Everything. (At launch the zone was still serving day-old low-res images until purged.)
 
 ---
 
