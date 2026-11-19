@@ -80,7 +80,7 @@ window.SITE = {
     { thumb: "media/work/08.jpg", video: "media/work/08.mp4", title: "Canva Create 2026 Keynote", client: "Canva", role: "Motion Producer" },
     { thumb: "media/work/03.jpg", video: "media/work/03.mp4", title: "Paid Social", client: "Canva", role: "Producer" },
     { thumb: "media/work/04.jpg", video: "media/work/04.mp4", title: "Happyfield x Canva Partnership · Paid Socials", client: "Canva", role: "Producer" },
-    { thumb: "media/work/05.jpg", social: "https://www.tiktok.com/@canva/video/7416626448011693330", title: "Organic Social", client: "Canva", role: "Producer" },
+    { thumb: "media/work/16.jpg", social: "https://www.tiktok.com/@canva/video/7488227195203161351", title: "Organic Social", client: "Canva", role: "Producer" },
     { thumb: "media/work/06.jpg", social: "https://www.tiktok.com/@canva/video/7490699253078052104", title: "Organic Social", client: "Canva", role: "Producer" },
     { thumb: "media/work/07.jpg", video: "media/work/07.mp4", title: "Paid Social", client: "Canva", role: "Producer" },
     { thumb: "media/work/02.jpg", social: "https://www.tiktok.com/@canva/video/7389406778397641991", title: "Organic Social", client: "Canva", role: "Producer" },
